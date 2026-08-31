@@ -25,10 +25,24 @@
     }
 
     .menu-shell {
-      width: 100%;
-      min-height: 100%;
-      overflow: hidden;
-    }
+  width: calc(100% - 40px);
+  max-width: 1600px;
+  min-height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .menu-shell {
+    width: calc(100% - 100px);
+  }
+}
+
+@media (min-width: 1200px) {
+  .menu-shell {
+    width: calc(100% - 160px);
+  }
+}
 
     .hero-band {
       background: linear-gradient(135deg, #ffffff 0%, #f8f4ff 58%, #f2f6ff 100%);
