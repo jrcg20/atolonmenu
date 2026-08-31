@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="es"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260830-23-80a41cf","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/50d846425a1e5082.telemetry_sdk.js" integrity="sha512-Otbex+ztlVbcEGql0rXGd/3E3ee/hqAntg6DeuUEMG6pIPbXGOSvZbFZVzknAXi1tH/itQ+ijEhOTr2aWj6CXg=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú de Bebidas</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/0aac212797dcb9a6.editing_sdk.js" integrity="sha512-U1Z5TGB/MTX0fFSADhP7rVM3+UzJJjKTapiY1vm1cxcbcyWo4eBuCJNJO6zARJ5kHopP9UvWNtPszOqzRc1ICA=="></script>
+  <style>
+    :root {
+      --blue: #00186b;
+      --lilac: #b84fc1;
+      --pale-lilac: #f8e8fa;
+      --line: #cad1e8;
+      --soft-blue: #f4f7ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--blue);
+      font-family: "DM Sans", sans-serif;
+    }
+
+    .menu-shell {
+      width: 100%;
+      min-height: 100%;
+      overflow: hidden;
+    }
+
+    .hero-band {
+      background: linear-gradient(135deg, #ffffff 0%, #f8f4ff 58%, #f2f6ff 100%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.05rem 4.5rem;
+    }
+
+    .title-heavy {
+      color: var(--lilac);
+      font-family: Arial, "DM Sans", sans-serif;
+      font-weight: 800;
+      letter-spacing: -.035em;
+      line-height: 1.08;
+    }
+
+    .category-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, .97);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    .category-scroll {
+      display: flex;
+      gap: .55rem;
+      overflow-x: auto;
+      padding: .75rem 0;
+      scrollbar-width: thin;
+      scrollbar-color: #b9c2df transparent;
+    }
+
+    .category-scroll::-webkit-scrollbar { height: 5px; }
+    .category-scroll::-webkit-scrollbar-thumb {
+      background: #b9c2df;
+      border-radius: 99px;
+    }
+
+    .category-btn {
+      flex: 0 0 auto;
+      min-height: 2.65rem;
+      border: 1.5px solid var(--blue);
+      border-radius: .75rem;
+      background: #ffffff;
+      color: var(--blue);
+      padding: .6rem .9rem;
+      font-size: .71rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: .035em;
+      text-align: center;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
+    }
+
+    .category-btn:hover {
+      background: var(--pale-lilac);
+      transform: translateY(-1px);
+    }
+
+    .category-btn:focus-visible {
+      outline: 3px solid #e9a5ed;
+      outline-offset: 3px;
+    }
+
+    .category-btn.is-active {
+      background: var(--blue) !important;
+      color: #ffffff !important;
+      border-color: var(--blue) !important;
+      box-shadow: 0 7px 15px rgba(0, 24, 107, .17);
+    }
+
+    .panel[hidden] { display: none; }
+    .menu-panel { animation: rise .28s ease both; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(7px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .intro-card {
+      background: linear-gradient(135deg, #fff8ff, #f2f6ff);
+      border: 1px solid #ddb8e1;
+    }
+
+    .rule {
+      width: min(145px, 38%);
+      height: 2px;
+      margin-top: .85rem;
+      margin-bottom: 1.25rem;
+      border-radius: 99px;
+      background: var(--lilac);
+    }
+
+    .subsection-title {
+      margin: 1.75rem 0 .35rem;
+      color: var(--blue);
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .subsection-title:first-child { margin-top: 0; }
+
+    .subsection-rule {
+      width: 100%;
+      height: 1px;
+      margin-bottom: .2rem;
+      background: #d9c2e1;
+    }
+
+    .menu-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1rem;
+      padding: .9rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .menu-row.priced {
+      grid-template-columns: minmax(0, 1fr) minmax(95px, .42fr) minmax(105px, .48fr);
+    }
+
+    .drink-name {
+      color: var(--blue);
+      font-size: 1.28rem;
+      font-weight: 700;
+      line-height: 1.28;
+    }
+
+    .drink-desc {
+      margin: .38rem 0 0;
+      color: #294483;
+      font-size: .91rem;
+      line-height: 1.48;
+      max-width: 58rem;
+    }
+
+    .price {
+      align-self: start;
+      color: var(--blue);
+      font-size: .92rem;
+      font-weight: 700;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .price-head {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: .35rem;
+      color: #3c5691;
+      font-size: .66rem;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: .05em;
+      text-align: right;
+      text-transform: uppercase;
+    }
+
+    .price-head svg {
+      width: .92rem;
+      height: .92rem;
+      stroke-width: 2.2;
+    }
+
+    .menu-footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 7rem;
+      margin-top: 1.5rem;
+      padding: 1.5rem 4.5rem 2rem;
+      border-top: .5px solid var(--line);
+      background: linear-gradient(180deg, rgba(248, 232, 250, .28), rgba(244, 247, 255, .74));
+    }
+
+    .fish-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: min(10rem, 44vw);
+      height: 3.2rem;
+      overflow: visible;
+    }
+
+    .fish-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      transform: scale(1.15);
+      mix-blend-mode: multiply;
+    }
+
+    @media (max-width: 640px) {
+      .logo-wrap { padding: 1.15rem 4rem; }
+
+      .category-scroll {
+        padding: .62rem 0;
+        gap: .45rem;
+      }
+
+      .category-btn {
+        min-height: 2.48rem;
+        padding: .55rem .76rem;
+        font-size: .67rem;
+      }
+
+      .menu-row {
+        gap: .7rem;
+        padding: .82rem 0;
+      }
+
+      .menu-row.priced {
+        grid-template-columns: minmax(0, 1fr) minmax(72px, .3fr) minmax(78px, .34fr);
+        gap: .85rem;
+        padding: 1.05rem 0;
+        align-items: start;
+      }
+
+      .menu-row.priced .drink-meta,
+      .menu-row.priced .bottle-price,
+      .price-head.glass-head,
+      .price-head.bottle-head {
+        grid-row: auto;
+        grid-column: auto;
+      }
+
+      .price-head {
+        gap: .2rem;
+        font-size: .57rem;
+        line-height: 1.2;
+      }
+
+      .price-head svg {
+        width: .75rem;
+        height: .75rem;
+      }
+
+      .price {
+        font-size: .72rem;
+        line-height: 1.3;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+
+      .drink-name { font-size: .96rem; }
+      .drink-desc { font-size: .8rem; }
+    }
+  </style>
+  <script src="/_sdk/b3bf9e8ac58e6ad6.data_sdk.js" type="text/javascript" integrity="sha512-otc1u9NYq9Ms5Jt//7vmhrrqR5CLPr8Jdgs6741gqniClfLMcfmC+jK/cKuQdhLv6G0esJ/FzaMS9tv0T/vj/Q=="></script>
+  <script src="/_sdk/2cfae6c35b9820dc.resizing_sdk.js" type="text/javascript" integrity="sha512-Oy+wKa9tloayelgS18tBfR707QfWMdeA8unVpm1M0/W/edVyjcRCNO6/jCvDwt/HpUta1v7sfMHiF1mAVr5RIA=="></script>
+ </head>
+ <body data-template-id="__page-root" style="background: rgb(255, 255, 255);">
+  <div class="menu-shell">
+   <header class="hero-band">
+    <div class="logo-wrap"><img data-template-id="brand-logo" class="canva-image h-14 sm:h-20 w-auto object-contain" loading="lazy" src="canva://MAHSaCRLgNo/1" alt="Logo de Atolon Beach Club">
+    </div>
+   </header>
+   <nav aria-label="Categorías del menú" class="category-nav">
+    <div class="w-full max-w-7xl mx-auto px-16 sm:px-36">
+     <div class="category-scroll" role="tablist"><button type="button" role="tab" aria-selected="true" aria-controls="mixology-panel" data-panel="mixology-panel" data-template-id="category-mixology" class="canva-button category-btn is-active" style="font-weight: 700; font-style: normal; font-size: 15px;">MIXOLOGÍA | MIXOLOGY</button> <button type="button" role="tab" aria-selected="false" aria-controls="whisky-panel" data-panel="whisky-panel" data-template-id="category-whisky" class="canva-button category-btn" style="font-weight: 700; font-style: normal; font-size: 15px;">WHISKY | BOURBON</button> <button type="button" role="tab" aria-selected="false" aria-controls="aguardiente-panel" data-panel="aguardiente-panel" data-template-id="category-aguardiente" class="canva-button category-btn" style="font-weight: 700; font-style: normal; font-size: 15px;">AGUARDIENTE</button> <button type="button" role="tab" aria-selected="false" aria-controls="spirits-panel" data-panel="spirits-panel" data-template-id="category-spirits" class="canva-button category-btn" style="font-weight: 700; font-style: normal; font-size: 15px;">SPIRITS &amp; COGNACS</button> <button type="button" role="tab" aria-selected="false" aria-controls="sparkling-panel" data-panel="sparkling-panel" data-template-id="category-sparkling" class="canva-button category-btn" style="font-weight: 700; font-style: normal; font-size: 15px;">ESPUMOSO | SPARKLING WINE</button> <button type="button" role="tab" aria-selected="false" aria-controls="wines-panel" data-panel="wines-panel" data-template-id="category-wines" class="canva-button category-btn" style="font-weight: 700; font-style: normal; font-size: 15px;">VINOS | WINES</button> <button type="button" role="tab" aria-selected="false" aria-controls="tequila-panel" data-panel="tequila-panel" data-template-id="category-tequila" class="canva-button category-btn" style="font-weight: 700; font-style: normal; font-size: 15px;">TEQUILA | MEZCAL</button> <button type="button" role="tab" aria-selected="false" aria-controls="rum-panel" data-panel="rum-panel" data-template-id="category-rum" class="canva-button category-btn" style="font-weight: 700; font-style: normal; font-size: 15px;">RON</button> <button type="button" role="tab" aria-selected="false" aria-controls="vodka-gin-panel" data-panel="vodka-gin-panel" data-template-id="category-gin" class="canva-button category-btn" style="font-weight: 700; font-style: normal; font-size: 15px;">VODKA | GIN</button> <button type="button" role="tab" aria-selected="false" aria-controls="beer-panel" data-panel="beer-panel" data-template-id="category-beer" class="canva-button category-btn" style="font-weight: 700; font-style: normal; font-size: 15px;">CERVEZA</button> <button type="button" role="tab" aria-selected="false" aria-controls="soft-panel" data-panel="soft-panel" data-template-id="category-soft" class="canva-button category-btn" style="font-weight: 700; font-style: normal; font-size: 15px;">BEBIDAS SIN ALCOHOL | SOFT DRINKS</button> <button type="button" role="tab" aria-selected="false" aria-controls="hot-panel" data-panel="hot-panel" data-template-id="category-hot" class="canva-button category-btn" style="font-weight: 700; font-style: normal; font-size: 15px;">BEBIDAS CALIENTES | HOT SOFT DRINKS</button>
+     </div>
+    </div>
+   </nav>
+   <main class="w-full max-w-7xl mx-auto px-16 sm:px-36 py-5 sm:py-8">
+    <section id="mixology-panel" class="panel menu-panel" role="tabpanel">
+     <div class="intro-card rounded-2xl px-5 py-5 sm:px-7 sm:py-6 mb-6">
+      <h1 data-template-id="panel-mixology-title" class="canva-text title-heavy" style="color: rgb(184, 79, 193); font-weight: 800; font-style: normal; font-size: 27px;">MIXOLOGÍA | MIXOLOGY</h1>
+     </div>
+     <div class="menu-list"></div>
+    </section>
+    <section id="whisky-panel" class="panel menu-panel" role="tabpanel" hidden="">
+     <h2 data-template-id="panel-whisky-title" class="canva-text title-heavy" style="color: rgb(184, 79, 193); font-weight: 800; font-style: normal; font-size: 27px;">WHISKY</h2>
+     <div class="rule"></div>
+     <div class="menu-list"></div>
+    </section>
+    <section id="aguardiente-panel" class="panel menu-panel" role="tabpanel" hidden="">
+     <h2 data-template-id="panel-aguardiente-title" class="canva-text title-heavy" style="color: rgb(184, 79, 193); font-weight: 800; font-style: normal; font-size: 27px;">AGUARDIENTE</h2>
+     <div class="rule"></div>
+     <div class="menu-list"></div>
+    </section>
+    <section id="spirits-panel" class="panel menu-panel" role="tabpanel" hidden="">
+     <h2 data-template-id="panel-spirits-title" class="canva-text title-heavy" style="color: rgb(184, 79, 193); font-weight: 800; font-style: normal; font-size: 27px;">SPIRITS &amp; COGNACS</h2>
+     <div class="rule"></div>
+     <div class="menu-list"></div>
+    </section>
+    <section id="sparkling-panel" class="panel menu-panel" role="tabpanel" hidden="">
+     <h2 data-template-id="panel-sparkling-title" class="canva-text title-heavy" style="color: rgb(184, 79, 193); font-weight: 800; font-style: normal; font-size: 27px;">ESPUMOSO | SPARKLING WINE</h2>
+     <div class="rule"></div>
+     <div class="menu-list"></div>
+    </section>
+    <section id="wines-panel" class="panel menu-panel" role="tabpanel" hidden="">
+     <h2 data-template-id="panel-wines-title" class="canva-text title-heavy" style="color: rgb(184, 79, 193); font-weight: 800; font-style: normal; font-size: 27px;">VINOS | WINES</h2>
+     <div class="rule"></div>
+     <div class="menu-list"></div>
+    </section>
+    <section id="tequila-panel" class="panel menu-panel" role="tabpanel" hidden="">
+     <h2 data-template-id="panel-tequila-title" class="canva-text title-heavy" style="color: rgb(184, 79, 193); font-weight: 800; font-style: normal; font-size: 27px;">TEQUILA | MEZCAL</h2>
+     <div class="rule"></div>
+     <div class="menu-list"></div>
+    </section>
+    <section id="rum-panel" class="panel menu-panel" role="tabpanel" hidden="">
+     <h2 data-template-id="panel-rum-title" class="canva-text title-heavy" style="color: rgb(184, 79, 193); font-weight: 800; font-style: normal; font-size: 27px;">RON</h2>
+     <div class="rule"></div>
+     <div class="menu-list"></div>
+    </section>
+    <section id="vodka-gin-panel" class="panel menu-panel" role="tabpanel" hidden="">
+     <h2 data-template-id="panel-gin-title" class="canva-text title-heavy" style="color: rgb(184, 79, 193); font-weight: 800; font-style: normal; font-size: 27px;">VODKA | GIN</h2>
+     <div class="rule"></div>
+     <div class="menu-list"></div>
+    </section>
+    <section id="beer-panel" class="panel menu-panel" role="tabpanel" hidden="">
+     <h2 data-template-id="panel-beer-title" class="canva-text title-heavy" style="color: rgb(184, 79, 193); font-weight: 800; font-style: normal; font-size: 27px;">CERVEZA</h2>
+     <div class="rule"></div>
+     <div class="menu-list"></div>
+    </section>
+    <section id="soft-panel" class="panel menu-panel" role="tabpanel" hidden="">
+     <h2 data-template-id="panel-soft-title" class="canva-text title-heavy" style="color: rgb(184, 79, 193); font-weight: 800; font-style: normal; font-size: 27px;">BEBIDAS SIN ALCOHOL | SOFT DRINKS</h2>
+     <div class="rule"></div>
+     <div class="menu-list"></div>
+    </section>
+    <section id="hot-panel" class="panel menu-panel" role="tabpanel" hidden="">
+     <h2 data-template-id="panel-hot-title" class="canva-text title-heavy" style="color: rgb(184, 79, 193); font-weight: 800; font-style: normal; font-size: 27px;">BEBIDAS CALIENTES | HOT SOFT DRINKS</h2>
+     <div class="rule"></div>
+     <div class="menu-list"></div>
+    </section>
+   </main>
+   <footer class="menu-footer">
+    <div class="fish-wrap"><img data-template-id="footer-fish" class="canva-image" loading="lazy" src="canva://MAHSctKwTLQ/1" alt="Silueta de pez lila">
+    </div>
+   </footer>
+  </div>
+  <script>
+    const menuData = {
+      "mixology-panel": [
+        ["Mezcalita Tierra Bomba", "Mezcal, licor de naranja, corozo y limón. Mezcal, orange liqueur, corozo and lime.", "COP $55.000"],
+        ["Aperol Spritz", "Aperol y Prosecco. Aperol and Prosecco.", "COP $55.000"],
+        ["Patillazo", "Vodka, Aperol, patilla y soda. Vodka, Aperol, watermelon and soda.", "COP $55.000"],
+        ["Corozmopolitan", "Vodka, corozo, lychee y limón. Vodka, corozo, lychee and lime.", "COP $55.000"],
+        ["Espresso Martini", "Vodka, licor de café y café espresso. Vodka, coffee liqueur and espresso coffee.", "COP $55.000"],
+        ["Moscow Mule", "Vodka, ginger beer y zumo de limón. Vodka, ginger beer and lemon juice.", "COP $55.000"],
+        ["Caipiroska", "Vodka, limón y azúcar. Vodka, lime and sugar.", "COP $55.000"],
+        ["Bloody Mary", "Vodka, jugo de tomate, zumo de limón, salsa Worcestershire, salsa Tabasco, sal y pimienta negra. Vodka, tomato juice, lemon juice, Worcestershire sauce, Tabasco sauce, salt and black pepper.", "COP $55.000"],
+        ["Long Island Iced Tea", "Vodka, ron blanco, ginebra, tequila, cointreau, zumo de limón y coca-cola. Vodka, white rum, gin, tequila, cointreau, lemon juice and coca-cola.", "COP $55.000"],
+        ["Negroni", "Gin, Campari y vermouth rojo. Gin, Campari and sweet vermouth.", "COP $55.000"],
+        ["Margarita", "Tequila blanco, limón y triple sec. Blanco tequila, lime and triple sec.", "COP $55.000"],
+        ["Margarita de Maracuya", "Tequila blanco, maracuyá y triple sec. Blanco tequila, passion fruit and triple sec.", "COP $55.000"],
+        ["Margarita Picante", "Tequila blanco, limón, triple sec e infusión de jalapeño. Blanco tequila, lime, triple sec and jalapeño infusion.", "COP $55.000"],
+        ["Tequila Sunrise", "Tequila blanco, jugo de naranja y jarabe de granadina. Blanco tequila, orange juice and grenadine syrup.", "COP $55.000"],
+        ["Paloma", "Tequila blanco, soda, toronja y limón. Blanco tequila, soda, grapefruit and lime.", "COP $55.000"],
+        ["Old Fashioned", "Whiskey Bourbon, Amargo de Angostura, soda y almíbar. Bourbon whiskey, Angostura bitters, soda and simple syrup.", "COP $55.000"],
+        ["Dorado Highball", "Whisky, jarabe de toronja y soda. Whisky, grapefruit syrup and soda.", "COP $55.000"],
+        ["Mojito", "Ron blanco, hierbabuena, limón y soda. White rum, mint, lime and soda.", "COP $55.000"],
+        ["Mojito Colombiano", "Aguardiente, hierbabuena, limón y soda. Aguardiente, mint, lime and soda.", "COP $55.000"],
+        ["Piñacolada", "Ron, piña, crema de coco y leche condensada. Rum, pineapple, coconut cream and condensed milk.", "COP $55.000"],
+        ["Cocolada", "Ron blanco, crema de coco, leche condensada y limón. White rum, coconut cream, condensed milk and lime.", "COP $55.000"],
+        ["Caipirinha", "Cachaza y limón. Cachaça and lime.", "COP $55.000"]
+      ],
+      "whisky-panel": {
+        groups: [
+          {
+            title: "WHISKY BLENDED",
+            items: [
+              ["Chivas Regal 12 Años", "", "COP $46.000", "COP $550.000"],
+              ["Chivas Regal 18 Años", "", "COP $110.000", "COP $1.200.000"],
+              ["Old Parr 12 Años", "", "COP $46.000", "COP $550.000"],
+              ["Buchanans 12 Años", "", "COP $46.000", "COP $550.000"],
+              ["Buchanans 18 Años", "", "COP $95.000", "COP $1.045.000"],
+              ["Johnnie Walker Red Label", "", "COP $35.000", " "],
+              ["Johnnie Walker Black Label", "", "COP $51.000", "COP $561.000"],
+              ["Monkey Shoulder", "", "COP $42.000", "COP $462.000"]
+            ]
+          },
+          {
+            title: "SINGLE MALT",
+            items: [
+              ["The Glenglivet 12 Años", "", "COP $58.000", "COP $638.000"],
+              ["Singleton 12 Años", "", "COP $55.000", "COP $605.000"],
+              ["Glenfiddich 12 Años", "", "COP $65.000", "COP $715.000"],
+              ["Macallan 12 Años", "", "COP $95.000", "COP $1.045.000"]
+            ]
+          },
+          {
+            title: "BOURBON",
+            items: [
+              ["Bulleit Rye", "", "COP $40.000", "COP $440.000"],
+              ["Bulleit Bourbon", "", "COP $40.000", "COP $440.000"],
+              ["Jack Daniels N.º 7", "", "COP $42.000", "COP $462.000"],
+              ["Jameson Whiskey", "", "COP $45.000", "COP $495.000"]
+            ]
+          }
+        ]
+      },
+      "aguardiente-panel": [
+        ["Antioqueño Verde S/Azúcar", "", "COP $35.000", "COP $350.000"],
+        ["Antioqueño Azul S/Azúcar", "", "COP $35.000", "COP $350.000"],
+        ["Amarillo de Manzanares", "", "COP $35.000", "COP $350.000"]
+      ],
+      "spirits-panel": {
+        groups: [
+          {
+            title: "Aperitivos | Aperitifs",
+            items: [
+              ["Aperol", "", "COP $35.000", " "],
+              ["Campari", "", "COP $35.000", " "],
+              ["Martini Dry", "", "COP $35.000"]
+            ]
+          },
+          {
+            title: "Digestivos | Digestifs",
+            items: [
+              ["Amaretto Disaronno", "", "COP $55.000", "COP $600.000"],
+              ["Cognac Hennessy Very Special", "", "COP $66.000", "COP $726.000"],
+              ["Cognac Remy Martin VSOP", "", "COP $99.000", "COP $1.089.000"],
+              ["Licor 43", "", "COP $38.000", "COP $350.000"],
+              ["Baileys", "", "COP $35.000", "COP $315.000"],
+              ["Jägermeister", "", "COP $35.000", "COP $315.000"],
+              ["Cachaça", "", "COP $38.000", " "],
+              ["Cointreau", "", "COP $45.000", " "],
+              ["Brandy Domecq", "", "COP $35.000", " "]
+            ]
+          },
+        ],
+        items: [
+          ["Martini Rosso", "", "COP $35.000"],
+          ["Martini Bianco", "", "COP $35.000"]
+        ]
+      },
+      "sparkling-panel": [
+        ["Chandon", "", "COP $350.000"],
+        ["Chandon Rosé", "", "COP $350.000"],
+        ["Moët Brut Imperial", "", "COP $1.300.000"],
+        ["Moët Ice", "", "COP $1.450.000"],
+        ["Moët Rosé Imperial", "", "COP $1.600.000"],
+        ["Veuve Clicquot Yellow", "", "COP $950.000"],
+        ["Don Perignon", "", "COP $4.400.000"]
+      ],
+      "wines-panel": {
+        groups: [
+          {
+            title: "Vinos Blanco",
+            items: [
+              ["Ramón Bilbao Verdejo", "", "COP $45.000", "COP $200.000"],
+              ["Piccini Pinot Grigio", "", "COP $42.000", "COP $180.000"],
+              ["Leyda Sauvignon Blanc", "", "COP $52.000", "COP $249.000"],
+              ["Mar de Frades Albariño", "", "", "COP $390.000"]
+            ]
+          },
+          {
+            title: "Vinos Tintos",
+            items: [
+              ["Ramón Bilbao Crianza", "", "COP $45.000", "COP $200.000"],
+              ["Trapiche Merlot", "", "COP $32.000", "COP $149.000"],
+              ["Los Intocables Malbec", "", "COP $54.000", "COP $249.000"]
+            ]
+          },
+          {
+            title: "Vinos Rosados",
+            items: [
+              ["Ramón Bilbao Rose", "", "COP $45.000", "COP $200.000"],
+              ["Muga Rioja Rose", "", "COP $50.000", "COP $250.000"]
+            ]
+          }
+        ]
+      },
+      "tequila-panel": {
+        groups: [
+          {
+            title: "TEQUILA",
+            items: [
+              ["Don Julio Añejo Reservado", "", "COP $75.000", "COP $825.000"],
+              ["Don Julio Reposado", "", "COP $70.000", "COP $770.000"],
+              ["Don Julio Blanco", "", "COP $65.000", "COP $715.000"],
+              ["Don Julio 1942", "", "COP $3.600.000"],
+              ["Don Julio 70", "", "COP $99.000", "COP $1.100.000"],
+              ["Maestro Dobel Cristalino", "", "COP $79.000", "COP $850.000"],
+              ["1800 Añejo", "", "COP $70.000", "COP $770.000"],
+              ["1800 Reposado", "", "COP $65.000", "COP $715.000"],
+              ["1800 Silver", "", "COP $60.000", "COP $660.000"]
+            ]
+          },
+          {
+            title: "MEZCAL",
+            items: [
+              ["Mezcal Ojo de Tigre", "", "COP $56.000", "COP $616.000"],
+              ["Mezcal 400 Conejos", "", "COP $57.000", "COP $620.000"],
+              ["Mezcal Unión", "", "COP $47.000", "COP $517.000"]
+            ]
+          }
+        ]
+      },
+      "rum-panel": [
+        ["Havana 3 Años", "", "COP $30.000", "COP $330.000"],
+        ["Havana Club 7", "", "COP $38.000", "COP $420.000"],
+        ["Bacardi Carta Blanca", "", "COP $30.000", "COP $330.000"],
+        ["Bacardi Añejo", "", "COP $30.000", "COP $330.000"],
+        ["Ron Viejo de Caldas", "", "COP $35.000", "COP $385.000"],
+        ["Dictador 12 Años", "", "COP $55.000", "COP $605.000"],
+        ["Dictador 20 Años", "", "COP $65.000", "COP $715.000"],
+        ["La Hechicera", "", "COP $60.000", "COP $660.000"],
+        ["Zacapa 23 Años", "", "COP $60.000", "COP $660.000"],
+        ["Zacapa Ámbar", "", "COP $45.000", "COP $495.000"],
+              ],
+      "vodka-gin-panel": {
+        groups: [
+          {
+            title: "VODKA",
+            items: [
+              ["Absolut", "", "COP $36.000", "COP $396.000"],
+              ["Belvedere", "", "COP $69.000", "COP $759.000"],
+              ["Grey Goose", "", "COP $58.000", "COP $638.000"],
+              ["Ketel One", "", "COP $52.000", "COP $572.000"],
+              ["Tito's Handmade", "", "COP $75.000", "COP $825.000"]
+            ]
+          },
+          {
+            title: "GIN",
+            items: [
+              ["Beefeater Pink", "", "COP $56.000", "COP $616.000"],
+              ["Beefeater London", "", "COP $48.000", "COP $528.000"],
+              ["Bombay", "", "COP $46.000", "COP $506.000"],
+              ["Hendricks", "", "COP $60.000", "COP $660.000"],
+              ["Tanqueray London", "", "COP $45.000", "COP $495.000"],
+              ["Tanqueray Ten", "", "COP $56.000", "COP $616.000"],
+              ["Monkey 47", "", "COP $85.000", "COP $467.500"]
+            ]
+          }
+        ]
+      },
+      "beer-panel": {
+        items: [
+          ["Águila Light", "", "COP $20.000"],
+          ["Club Colombia Dorada", "", "COP $20.000"],
+          ["Stella Artois", "", "COP $24.000"],
+          ["Corona", "", "COP $24.000"],
+          ["Heineken", "", "COP $24.000"],
+          ["Costeñita", "", "COP $16.000"]
+        ],
+        note: "La cerveza michelada tiene un costo adicional de $3.000 y con Clamato un costo adicional de $15.000."
+      },
+      "soft-panel": [
+        ["Agua sin gas Manantial", "", "COP $12.000"],
+        ["Agua con gas Manantial", "", "COP $12.000"],
+        ["Coca-Cola Regular", "", "COP $12.000"],
+        ["Coca-Cola Zero", "", "COP $12.000"],
+        ["Quatro", "", "COP $12.000"],
+        ["Kola Román", "", "COP $12.000"],
+        ["Ginger Ale Canada Dry", "", "COP $12.000"],
+        ["Soda Premium", "", "COP $12.000"],
+        ["Agua Tónica 1976", "", "COP $24.000"],
+        ["Agua Tónica Canada Dry", "", "COP $15.000"],
+        ["Red Bull", "", "COP $21.000"],
+        ["Electrolit", "", "COP $21.000"],
+        ["Limonada Natural", "", "COP $13.000"],
+        ["Limonada Mineral", "", "COP $14.000"],
+        ["Limonada de Hierbabuena", "", "COP $14.000"],
+        ["Limonada Cerezada", "", "COP $17.000"],
+        ["Limonada de Coco", "", "COP $20.000"],
+        ["Gatorade", "", "COP $15.000"],
+        ["Jugos Tropicales", "", "COP $14.000"]
+      ],
+      "hot-panel": [
+        ["Café Americano", "", "COP $10.000"],
+        ["Café Espresso", "", "COP $10.000"],
+        ["Café Espresso Doble", "", "COP $15.000"],
+        ["Café con Leche", "", "COP $12.000"],
+        ["Chocolate", "", "COP $12.000"],
+        ["Aromática - Té Infusión", "", "COP $10.000"]
+      ]
+    };
+
+    const shotPanels = new Set([
+      "whisky-panel",
+      "aguardiente-panel",
+      "spirits-panel",
+      "tequila-panel",
+      "rum-panel",
+      "vodka-gin-panel"
+    ]);
+
+    function createHeaderRow(panelId, martiniOnly = false) {
+      const usesShot = shotPanels.has(panelId);
+      const isMartini = martiniOnly;
+      const isSparkling = panelId === "sparkling-panel";
+      const row = document.createElement("div");
+      row.className = "menu-row priced";
+      row.innerHTML = `
+        <div></div>
+        <div class="price-head glass-head">
+          ${isMartini ? "" : `<i data-lucide="${usesShot ? "glass-water" : "wine"}" aria-hidden="true"></i>`}
+          <span>${isSparkling || isMartini ? "" : (usesShot ? "Por shot | By shot" : "Por copeo | By glass")}</span>
+        </div>
+        <div class="price-head bottle-head">
+          <i data-lucide="milk" aria-hidden="true"></i>
+          <span>${isMartini ? "" : "Por botella | By bottle"}</span>
+        </div>
+      `;
+      return row;
+    }
+
+    function createRow(item, panelId = "") {
+      const [name, description, servicePrice, bottlePrice] = item;
+      const isMartini = panelId === "spirits-panel" && !bottlePrice && ["Martini Rosso", "Martini Dry", "Martini Bianco"].includes(name);
+      const row = document.createElement("div");
+      row.className = bottlePrice || isMartini ? "menu-row priced" : "menu-row";
+
+      row.innerHTML = `
+        <div class="${bottlePrice || isMartini ? "drink-meta" : ""}">
+          <div class="drink-name"></div>
+          ${description ? '<p class="drink-desc"></p>' : ""}
+        </div>
+        <div class="price"></div>
+        ${bottlePrice || isMartini ? '<div class="price bottle-price"></div>' : ""}
+      `;
+
+      row.querySelector(".drink-name").textContent = name;
+      if (description) row.querySelector(".drink-desc").innerHTML = description.replace(". ", ".<br>");
+      row.querySelector(".price").textContent = servicePrice;
+      if (bottlePrice) row.querySelector(".bottle-price").textContent = bottlePrice;
+      return row;
+    }
+
+    function addItems(list, panelId, items) {
+      const usesBottlePrices = items.some(item => item[3]);
+      const isSparkling = panelId === "sparkling-panel";
+      if (usesBottlePrices || isSparkling) list.appendChild(createHeaderRow(panelId));
+      items.forEach(item => list.appendChild(createRow(item, panelId)));
+    }
+
+    Object.entries(menuData).forEach(([panelId, content]) => {
+      const list = document.querySelector(`#${panelId} .menu-list`);
+
+      if (content.groups) {
+        content.groups.forEach(group => {
+          const groupTitle = document.createElement("h3");
+          groupTitle.className = "subsection-title";
+          groupTitle.textContent = group.title;
+
+          const groupRule = document.createElement("div");
+          groupRule.className = "subsection-rule";
+
+          list.appendChild(groupTitle);
+          list.appendChild(groupRule);
+          addItems(list, panelId, group.items);
+        });
+        if (content.items) addItems(list, panelId, content.items);
+      } else if (Array.isArray(content)) {
+        addItems(list, panelId, content);
+      } else {
+        addItems(list, panelId, content.items);
+        if (content.note) {
+          const note = document.createElement("p");
+          note.className = "drink-desc mt-4 font-semibold text-base sm:text-lg";
+          note.innerHTML = "La cerveza <strong>Michelada</strong> tiene un costo adicional de <strong>$3.000</strong> y con <strong>Clamato</strong> un costo adicional de <strong>$10.000</strong>.";
+          list.appendChild(note);
+        }
+      }
+    });
+
+    const tabs = document.querySelectorAll('[role="tab"]');
+    const panels = document.querySelectorAll('[role="tabpanel"]');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const targetId = tab.dataset.panel;
+
+        tabs.forEach((item) => {
+          const selected = item === tab;
+          item.classList.toggle("is-active", selected);
+          item.setAttribute("aria-selected", String(selected));
+        });
+
+        panels.forEach((panel) => {
+          const selected = panel.id === targetId;
+          panel.hidden = !selected;
+
+          if (selected) {
+            panel.classList.remove("menu-panel");
+            void panel.offsetWidth;
+            panel.classList.add("menu-panel");
+          }
+        });
+      });
+    });
+
+    lucide.createIcons();
+  </script>
+ 
+</body></html>
